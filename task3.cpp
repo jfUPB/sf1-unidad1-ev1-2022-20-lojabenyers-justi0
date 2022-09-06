@@ -92,7 +92,6 @@ void task3()
         uint32_t currentTime = millis();
         if ((currentTime - lasTime) >= intervalMEDIO)
         {
-
             lasTime = currentTime;
             digitalWrite(ledMode, ledState);
             ledState = !ledState;
@@ -102,8 +101,7 @@ void task3()
             buttonEvt.trigger = false;
             if (buttonEvt.whichButton == BUTTONS::ONE_BTN)
             {
-                ledState = true;
-                digitalWrite(ledMode, ledState);
+
                 taskState = TaskStates::WaitMedio;
             }
             else if (buttonEvt.whichButton == BUTTONS::TWO_BTN)
@@ -146,7 +144,7 @@ void task3()
                     else if (lastStateON == false)
                     {
 
-                        ledState = false;
+                        ledState = true;
                         digitalWrite(ledMode, ledState);
 
                         taskState = TaskStates::Lento;
@@ -176,8 +174,6 @@ void task3()
                 key = 0;
                 lastStateON = false;
                 taskState = TaskStates::Rapida;
-
-
             }
         }
         break;
@@ -198,7 +194,6 @@ void task3()
                 key = 0;
                 lastStateON = true;
                 taskState = TaskStates::Rapida;
-
             }
         }
         break;
@@ -218,6 +213,8 @@ void task3()
         uint32_t currentTime = millis();
         if ((currentTime - lasTime) >= intervalMEDIO)
         {
+            ledState = true;
+            digitalWrite(ledMode, ledState);
             taskState = TaskStates::ON;
         }
         break;
